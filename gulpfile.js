@@ -9,6 +9,8 @@ var ts = require("gulp-typescript");
 var tslint = require("gulp-tslint");
 var sourcemaps = require("gulp-sourcemaps");
 var uglify = require("gulp-uglify");
+var mocha = require("gulp-mocha");
+var istanbul = require("gulp-istanbul");
 //var mocha = require("gulp-spawn-mocha");
 
 //define typescript project
@@ -57,10 +59,10 @@ gulp.task("build:copy", () => {
     .pipe(gulp.dest("debug/frontend"));
 });
 
-gulp.task("build-test", function() {
+gulp.task("build:test", () => {
     return gulp.src("test/**/*.ts")
         .pipe(tsc(tsTestProject))
-        .js.pipe(gulp.dest("test/"));
+        .js.pipe(gulp.dest("debug/"));
 });
 
 gulp.task("lint:backend", () => {
@@ -69,5 +71,14 @@ gulp.task("lint:backend", () => {
         .pipe(tslint.report("verbose"));
 });
 
+gulp.task("istanbul:hook", () => {
+    return gulp.src(["debug/backend/**/*.js", "!debug/backend/**/*.spec.js"])
+        .pipe(istanbul())
+        .pipe(istanbul.hookRequire());
+});
 
-
+gulp.task("test", ["istanbul:hook"], () => {
+    return gulp.src('debug/backend/**/*.spec.js')
+        .pipe(mocha({ui: 'bdd'}))
+        .pipe(istanbul.writeReports());
+});

@@ -20,6 +20,8 @@
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-add-src": "^0.2.0",
+    "gulp-istanbul": "^0.10.4",
+    "gulp-mocha": "^2.2.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-tslint": "^4.3.4",
     "gulp-typescript": "^2.12.2",
@@ -27,7 +29,7 @@
     "tslint": "^3.7.1"
   },
   "repository": {
-     "type": "git",
-     "url": "git+https://github.com/abreits/aurelia-ui-node-red"
+    "type": "git",
+    "url": "git+https://github.com/abreits/aurelia-ui-node-red"
   }
 }
