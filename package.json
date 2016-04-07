@@ -16,6 +16,7 @@
     "socket.io": "^1.4.5"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-add-src": "^0.2.0",
@@ -24,5 +25,9 @@
     "gulp-typescript": "^2.12.2",
     "gulp-uglify": "^1.5.3",
     "tslint": "^3.7.1"
+  },
+  "repository": {
+     "type": "git",
+     "url": "git+https://github.com/abreits/aurelia-ui-node-red"
   }
 }

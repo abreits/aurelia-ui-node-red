@@ -18,13 +18,14 @@ var tsFrontendProject = ts.createProject({
     declaration: true
 });
 
-//define typescript project
+//define typescript project types
 var tsBackendProject = ts.createProject({
     module: "commonjs",
     target: "ES6",
     declaration: true,
     removeComments: true
 });
+var tsTestProject = tsBackendProject;
 
 gulp.task("default", ["build"]);
 
@@ -51,13 +52,22 @@ gulp.task("build:backend", () => {
         .pipe(gulp.dest("debug/backend"))
 });
 
+gulp.task("build:copy", () => {
+    return gulp.src(["src/frontend/**/**.html", "src/frontend/external/**"])
+    .pipe(gulp.dest("debug/frontend"));
+});
+
+gulp.task("build-test", function() {
+    return gulp.src("test/**/*.ts")
+        .pipe(tsc(tsTestProject))
+        .js.pipe(gulp.dest("test/"));
+});
+
 gulp.task("lint:backend", () => {
     return gulp.src("src/backend/**/**.ts")
         .pipe(tslint({}))
         .pipe(tslint.report("verbose"));
 });
 
-gulp.task("build:copy", () => {
-    return gulp.src(["src/frontend/**/**.html", "src/frontend/external/**"])
-    .pipe(gulp.dest("debug/frontend"));
-});
+
+
