@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es2015",
+        "outDir": "../../debug/backend",
+        "rootDir": "../../src/backend",
+        "sourceMap": true,
+        "removeComments": true
+    }
+}
